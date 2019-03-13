@@ -150,7 +150,7 @@ p
 
 ![](GSoC_AoNi_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-In this plot, the time cost of glmnet didn't change to much with the increasing of sample size. What if I repeat the original dataset for 1000 times and add the sample size to 100,000? This time I only run the test on glmnet.
+In this plot, the time cost of glmnet didn't change too much with the increasing of sample size. What if I repeat the original dataset for 1000 times and add the sample size to 100,000? This time I only run the test on glmnet.
 
 ``` r
 #expend the dataset to 100k
