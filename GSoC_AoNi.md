@@ -100,9 +100,9 @@ p
 
 ![](GSoC_AoNi_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-It is obvious that the as the sample size increase for iregnet, time cost also increase. The increasing is linearity, which seems reasonable. However, the pattern for glmnet is different, time cost didn't increase along with sample size.
+It is obvious that as the sample size increase for iregnet, time cost also increase. The increasing is linearity, which seems reasonable. However, the pattern for glmnet is not clear, time cost didn't increase along with sample size in this plot.
 
-To better prove the hypothesis, I repeat the Prostate data for 10 more times and add some noises to some columns to expend my samplesize. Below is the efficiency test for new dataset.
+To better find out the pattern for glmnet, I repeat the Prostate data for 10 more times and add some noises to columns to expend my sample size. Below is the efficiency test for the generated dataset.
 
 ``` r
 #expend the dataset
@@ -150,7 +150,7 @@ p
 
 ![](GSoC_AoNi_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
-This test prove my hypothesis. The time cost of glmnet didn't change to much with the increase of sample size. What if I increase the sample size to 100,000? This time I also run the test on glmnet
+This test prove my hypothesis. The time cost of glmnet didn't change to much with the increase of sample size. What if I keep repeat the original dataset and add the sample size to 100,000? This time I only run the test on glmnet.
 
 ``` r
 #expend the dataset to 100k
@@ -185,4 +185,4 @@ p
 
 ![](GSoC_AoNi_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-The running time still increase in a larger scale sample size for glmnet.
+The running time increase in a larger scale sample size for glmnet.
