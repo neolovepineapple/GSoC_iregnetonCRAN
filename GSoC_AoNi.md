@@ -67,7 +67,6 @@ idx = sample(array(1:nrow(X)))
 eval.ire <- apply(array(20:nrow(X)),1,function(n){
   X.batch = X[idx[1:n],]
   Y.batch.ire = Y[idx[1:n],]
-  #Y.batch.glm = as.matrix(Prostate['lcavol'])[idx[1:n]]
   time.ire = microbenchmark(iregnet(x = X.batch, y = Y.batch.ire),times = 100L, unit = 'ms')
   return(as.vector(summary(time.ire)[1,c('median','lq','uq')]))
   })
@@ -79,7 +78,6 @@ eval.ire$samplesize <- (array(20:nrow(X)))
 #perform efficiency test on glmnet
 eval.glm <- apply(array(20:nrow(X)),1,function(n){
   X.batch = X[idx[1:n],]
-  #Y.batch.ire = Y[idx[1:n],]
   Y.batch.glm = as.matrix(Prostate['lcavol'])[idx[1:n]]
   time.glm = microbenchmark(glmnet(x = X.batch, y = Y.batch.glm),times = 100L, unit = 'ms')
   return(as.vector(summary(time.glm)[1,c('median','lq','uq')]))
@@ -120,9 +118,6 @@ eval.ire <- apply(array(1:(nrow(X)/10))*10,1,function(n){
   
   X.batch = X[idx[1:n],]
   Y.batch.ire = Y[idx[1:n],]
-  #cat(nrow(X.batch))
-  #cat(' ')
-  #Y.batch.glm = as.matrix(Prostate['lcavol'])[idx[1:n]]
   time.ire = microbenchmark(iregnet(x = X.batch, y = Y.batch.ire),times = 100L, unit = 'ms')
   return(as.vector(summary(time.ire)[1,c('median','lq','uq')]))
 })
@@ -133,9 +128,6 @@ eval.ire$samplesize <- array(1:(nrow(X)/10))*10
 
 eval.glm <- apply(array(1:(nrow(X)/10))*10,1,function(n){
   X.batch = X[idx[1:n],]
-  #cat(n)
-  #cat(' ')
-  #Y.batch.ire = Y[idx[1:n],]
   Y.batch.glm = as.matrix(Prostate.expend['lcavol'])[idx[1:n]]
   time.glm = microbenchmark(glmnet(x = X.batch, y = Y.batch.glm),times = 100L, unit = 'ms')
   return(as.vector(summary(time.glm)[1,c('median','lq','uq')]))
@@ -161,7 +153,7 @@ p
 This test prove my hypothesis. The time cost of glmnet didn't change to much with the increase of sample size. What if I increase the sample size to 100,000? This time I also run the test on glmnet
 
 ``` r
-#expend the dataset
+#expend the dataset to 100k
 Prostate.expend <- Prostate[rep(seq_len(nrow(Prostate)), 1000), ]
 Prostate.expend$lcavol <- Prostate.expend$lcavol+rnorm(nrow(Prostate.expend),0,0.1)
 Prostate.expend$lweight <- Prostate.expend$lweight+rnorm(nrow(Prostate.expend),0,0.1)
@@ -172,18 +164,10 @@ idx = sample(array(1:nrow(X)))
 
 eval.glm <- apply(array(1:(nrow(X)/2000))*2000,1,function(n){
   X.batch = X[idx[1:n],]
-  cat(n)
-  cat(' ')
-  #Y.batch.ire = Y[idx[1:n],]
   Y.batch.glm = as.matrix(Prostate.expend['lcavol'])[idx[1:n]]
   time.glm = microbenchmark(glmnet(x = X.batch, y = Y.batch.glm),times = 100L, unit = 'ms')
   return(as.vector(summary(time.glm)[1,c('median','lq','uq')]))
 })
-```
-
-    ## 2000 4000 6000 8000 10000 12000 14000 16000 18000 20000 22000 24000 26000 28000 30000 32000 34000 36000 38000 40000 42000 44000 46000 48000 50000 52000 54000 56000 58000 60000 62000 64000 66000 68000 70000 72000 74000 76000 78000 80000 82000 84000 86000 88000 90000 92000 94000 96000
-
-``` r
 eval.glm <- data.frame(matrix(unlist(eval.glm), nrow=length(eval.glm), byrow=T))
 colnames(eval.glm)<- c('median','lq','uq')
 eval.glm$func <- 'glmnet'
