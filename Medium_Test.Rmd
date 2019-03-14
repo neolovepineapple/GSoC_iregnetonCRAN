@@ -1,0 +1,58 @@
+---
+title: "Medium_Test"
+author: "Ao Ni"
+date: "2019/3/14"
+output: rmarkdown::github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+Hello everyone, this is Ao Ni, a senior student major in Statistics who will pursue a master degree in Computer science in the near future.Here is my solution for the medium tests.
+
+
+```{r, message = FALSE, warning=FALSE}
+library(iregnet)
+library(glmnet)
+library(lasso2)
+library(ggplot2)
+library(penaltyLearning)
+library(rmarkdown)
+library(microbenchmark)
+data("Prostate")
+data('neuroblastomaProcessed')
+```
+
+### Run iregnet on neuroblastomaProcessed data
+
+```{r}
+X <- neuroblastomaProcessed$feature.mat
+Y <- neuroblastomaProcessed$target.mat
+Y[abs(Y) == Inf] = NA
+summary(X)
+```
+
+
+We can see that some variables have zero variance. Delete them!
+
+
+```{r}
+select.col <- apply(X,2,function(x){
+  return(max(x)-min(x)!=0)
+})
+X = X[,select.col]
+set.seed(1)
+#fit the data!
+fit.ire <- iregnet(x = X, y = Y)
+plot(1,1)
+#plot(fit.ire)
+```
+Seems one of the variables has very small variance. I omit it in the next plot.
+
+```{r}
+fit.ire$beta <- fit.ire$beta[-c(which.min(fit.ire$beta[,100])),]
+#plot(fit.ire)
+plot(1,1)
+```
