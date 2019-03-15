@@ -118,16 +118,17 @@ p
 t.test(error_list.ireg, error_list.iter)
 ```
 
-    ## 
+    ##
     ##  Welch Two Sample t-test
-    ## 
+    ##
     ## data:  error_list.ireg and error_list.iter
-    ## t = 3.3489, df = 1.0312, p-value = 0.1787
+    ## t = 13.28, df = 20.388, p-value = 1.687e-11
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  -0.01000440  0.01790376
+    ## 0.003219037 0.004417008
     ## sample estimates:
-    ##  mean of x  mean of y 
-    ## 0.01930954 0.01535986
+    ## mean of x  mean of y 
+    ## 0.01901697 0.01519895 
 
-P Value > 0.05, we cannot conclude that a significant difference exists in two fucnction under the alpha value of 0.05. 
+
+P Value < 0.05, we reject the null hypothesis that the performance of two function are equal under the alpha value of 0.05. Generally speaking, the performance of IntervalRegressionCV is better than iregnet.
