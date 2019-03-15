@@ -262,7 +262,7 @@ summary(X)
     ##  3rd Qu.:0   3rd Qu.:0   3rd Qu.:0  
     ##  Max.   :0   Max.   :0   Max.   :0
 
-We can see that some variables have zero variance. No need to include them in the test.
+We can see that some variables have zero variance (e.g. chrX, chr22). No need to include them in the test.
 
 ``` r
 select.col <- apply(X,2,function(x){
@@ -278,7 +278,7 @@ plot(fit.ire)
 ![](GSoC_AoNi_files/figure-markdown_github/lasso_plot1.png)
 
 
-Seems one of the variables has very small variance, which lead to a very large coefficiency absolute value. I omit it in the next plot.
+One of the variables has very small variance, which lead to a very large coefficiency absolute value. I omit it in the next plot.
 
 ``` r
 fit.ire$beta <- fit.ire$beta[-c(which.min(fit.ire$beta[,100])),]
@@ -287,4 +287,4 @@ plot(fit.ire)
 
 ![](GSoC_AoNi_files/figure-markdown_github/lasso_plot2.png)
 
-This plot seems more informative than the previous one.
+This plot is more informative than the previous one.
