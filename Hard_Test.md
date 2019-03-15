@@ -131,4 +131,4 @@ t.test(error_list.ireg, error_list.iter)
     ## 0.01901697 0.01519895 
 
 
-P Value < 0.05, we reject the null hypothesis that the performance of two function are equal under the alpha value of 0.05. Generally speaking, the performance of IntervalRegressionCV is better than iregnet.
+P Value < 0.05, we reject the null hypothesis that the performances of two function are equal under the alpha value of 0.05. Generally speaking, the performance of IntervalRegressionCV is better than iregnet.
