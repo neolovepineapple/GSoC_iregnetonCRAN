@@ -20,7 +20,7 @@ data('neuroblastomaProcessed')
 
 Let's start at a metrics function.
 
-```{r, echo=FALSE}
+``` r
 test_error <- function(predict, label){
   len <- length(predict)
   errors <- 0
