@@ -18,9 +18,25 @@ data("Prostate")
 data('neuroblastomaProcessed')
 ```
 
-Let's start at a test error metrics function.
+Let's start at a metrics function.
 
-Then we can run a IntervalRegressionCV and test its precision.
+```{r, echo=FALSE}
+test_error <- function(predict, label){
+  len <- length(predict)
+  errors <- 0
+  for (i in array(1:len)){
+    if ((label[i,1]<=predict[i]) && (label[i,2]>=predict[i])){
+      
+    }else{
+      errors <- errors+1
+    }
+  }
+  return(errors/len)
+}
+```
+
+
+Then we can run a IntervalRegressionCV and test its precision (error rate).
 
 ``` r
 set.seed(10)
@@ -71,7 +87,7 @@ cat("The error rate for iregnet.CV:",error_rate.ireg)
 
     ## The error rate for iregnet.CV: 0.01901697
 
-The error rate of these two function seems to be almost the same.
+1.9%. The error rate of these two function seems to be almost the same.
 
 Due to the randomness of these two test, simply compare a single pair of result is not accurate. To better perform the comparision, we run each test 20 times and use a T test to compare the result.
 

@@ -3,8 +3,7 @@ Medium\_Test
 Ao Ni
 2019/3/14
 
-Introduction
-------------
+
 
 Hello everyone, this is Ao Ni, a senior student major in Statistics who will pursue a master degree in Computer science in the near future.Here is my solution for the medium tests.
 
@@ -21,6 +20,8 @@ data('neuroblastomaProcessed')
 ```
 
 ### Run iregnet on neuroblastomaProcessed data
+
+Before we start to run the function, I would like to check the quality of neuroblastomaProcessed data.
 
 ``` r
 X <- neuroblastomaProcessed$feature.mat
@@ -261,7 +262,7 @@ summary(X)
     ##  3rd Qu.:0   3rd Qu.:0   3rd Qu.:0  
     ##  Max.   :0   Max.   :0   Max.   :0
 
-We can see that some variables have zero variance. Delete them!
+We can see that some variables have zero variance. No need to include them in the test.
 
 ``` r
 select.col <- apply(X,2,function(x){
@@ -277,7 +278,7 @@ plot(fit.ire)
 ![](GSoC_AoNi_files/figure-markdown_github/lasso_plot1.png)
 
 
-Seems one of the variables has very small variance. I omit it in the next plot.
+Seems one of the variables has very small variance, which lead to a very large coefficiency absolute value. I omit it in the next plot.
 
 ``` r
 fit.ire$beta <- fit.ire$beta[-c(which.min(fit.ire$beta[,100])),]
@@ -285,3 +286,5 @@ plot(fit.ire)
 ```
 
 ![](GSoC_AoNi_files/figure-markdown_github/lasso_plot2.png)
+
+This plot seems more informative than the previous one.

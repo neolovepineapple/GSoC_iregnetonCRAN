@@ -15,10 +15,8 @@ data("Prostate")
 data('neuroblastomaProcessed')
 ```
 
-Introduction
-------------
 
-Hello everyone, this is Ao Ni, a senior student major in Statistics who will pursue a master degree in Computer science in the near future.Here is my solution for iregnet on CRAN Tests.
+Hello everyone, this is Ao Ni, a senior student major in Statistics who will pursue a master degree in Computer science in the near future.Here is my solution for the easy test.
 
 ### Test the two function
 
@@ -59,7 +57,7 @@ plot(lasso.ire, main = 'coefficient profile plot for iregnet')
 
 The two coefficient profile against L1 Norm of Coefficients plot are not exactly the same, but very close. We can say that they perform the same procedure.
 
-### Test the efficiency of two function
+### Compare the efficiency of two function
 
 ``` r
 idx = sample(array(1:nrow(X)))
@@ -185,4 +183,4 @@ p
 
 ![](GSoC_AoNi_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-The running time increase in a larger scale sample size for glmnet.
+The running time increase with the sample size in a larger scale for glmnet. 
