@@ -112,7 +112,7 @@ p <- ggplot(plt.dat, aes(x = func, y = error.rate))+
 p
 ```
 
-![](GSoC_AoNi_files/figure-markdown_github/boxplot.png)
+![](GSoC_AoNi_files/figure-markdown_github/box_plot.png)
 
 ``` r
 t.test(error_list.ireg, error_list.iter)
